@@ -1,0 +1,51 @@
+{% extends 'layout.html' %} 
+{% block body %}
+
+<!-- Green background and centered upload card -->
+<div style="background-color: #e2f4e2; min-height: 100vh; padding-top: 60px; padding-bottom: 40px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+  <h2 style="text-align: center; margin: 0px; color: #2c4b1c; font-size: 26px;">
+    <b>Find out which disease has been caught by your plant</b>
+  </h2>
+  <br /><br />
+
+  <div style="
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      color: #2e2e2e;
+      font-weight: bold;
+    ">
+
+    <form class="form-signin" method="POST" enctype="multipart/form-data">
+      <h2 style="font-size: 18px; margin-bottom: 20px;"><b>Please Upload The Image</b></h2>
+
+      <input type="file" name="file" class="form-control-file" id="inputfile" onchange="preview_image(event)" style="font-weight: bold; margin-bottom: 20px;" required>
+      
+      <img id="output-image" class="rounded mx-auto d-block" style="max-width: 100%; height: auto; margin-bottom: 20px; display: none;" />
+      
+      <button type="submit" class="btn" style="background-color: #58a06d; color: white; font-size: 18px; padding: 10px 30px; border-radius: 10px; border: none; font-weight: bold;">
+        Predict
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  function preview_image(event) {
+    var reader = new FileReader();
+    reader.onload = function () {
+      var output = document.getElementById('output-image');
+      output.src = reader.result;
+      output.style.display = 'block';
+    }
+    reader.readAsDataURL(event.target.files[0]);
+  }
+</script>
+
+{% endblock %}

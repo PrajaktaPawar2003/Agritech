@@ -1,0 +1,139 @@
+{% extends 'layout.html' %} 
+{% block body %}
+
+<!-- Page background color -->
+<div style="background-color: #e2f4e2; min-height: 100vh; padding-top: 30px; padding-bottom: 30px;">
+
+  <h2 style="text-align: center; margin: 0px 0 20px 0; color: #2e6f3e; font-weight: 700; font-size: 28px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+    <b>Find out the most suitable crop to grow in your farm</b>
+  </h2>
+
+  <div
+    style="
+      max-width: 500px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px 25px;
+      margin: 0 auto;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2e2e2e;
+    "
+  >
+    <form method="POST" action="{{ url_for('crop_prediction') }}">
+
+      <!-- Nitrogen -->
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="Nitrogen" style="font-size: 16px; font-weight: 600; color: #2c4b1c;"><b>Nitrogen</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="Nitrogen"
+          name="nitrogen"
+          placeholder="Enter the value (example: 50)"
+          style="width: 100%; padding: 12px; font-size: 15px; font-weight: 500; border: 1px solid #c1d7b8; border-radius: 10px; background-color: #f7faf5; color: #2e2e2e;"
+          required
+        />
+      </div>
+
+      <!-- Phosphorous -->
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="Phosphorous" style="font-size: 16px; font-weight: 600; color: #2c4b1c;"><b>Phosphorous</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="Phosphorous"
+          name="phosphorous"
+          placeholder="Enter the value (example: 50)"
+          style="width: 100%; padding: 12px; font-size: 15px; font-weight: 500; border: 1px solid #c1d7b8; border-radius: 10px; background-color: #f7faf5; color: #2e2e2e;"
+          required
+        />
+      </div>
+
+      <!-- Potassium -->
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="Pottasium" style="font-size: 16px; font-weight: 600; color: #2c4b1c;"><b>Potassium</b></label>
+        <input
+          type="number"
+          class="form-control"
+          id="Pottasium"
+          name="pottasium"
+          placeholder="Enter the value (example: 50)"
+          style="width: 100%; padding: 12px; font-size: 15px; font-weight: 500; border: 1px solid #c1d7b8; border-radius: 10px; background-color: #f7faf5; color: #2e2e2e;"
+          required
+        />
+      </div>
+
+      <!-- pH -->
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="ph" style="font-size: 16px; font-weight: 600; color: #2c4b1c;"><b>pH level</b></label>
+        <input
+          type="number"
+          step="0.01"
+          class="form-control"
+          id="ph"
+          name="ph"
+          placeholder="Enter the value"
+          style="width: 100%; padding: 12px; font-size: 15px; font-weight: 500; border: 1px solid #c1d7b8; border-radius: 10px; background-color: #f7faf5; color: #2e2e2e;"
+          required
+        />
+      </div>
+
+      <!-- Rainfall -->
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="Rainfall" style="font-size: 16px; font-weight: 600; color: #2c4b1c;"><b>Rainfall (in mm)</b></label>
+        <input
+          type="number"
+          step="0.01"
+          class="form-control"
+          id="Rainfall"
+          name="rainfall"
+          placeholder="Enter the value"
+          style="width: 100%; padding: 12px; font-size: 15px; font-weight: 500; border: 1px solid #c1d7b8; border-radius: 10px; background-color: #f7faf5; color: #2e2e2e;"
+          required
+        />
+      </div>
+
+      <!-- State and City -->
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="State" style="font-size: 16px; font-weight: 600; color: #2c4b1c;"><b>State</b></label>
+        <select
+          onchange="print_city('state', this.selectedIndex);"
+          id="sts"
+          name="stt"
+          class="form-control"
+          style="width: 100%; padding: 12px; font-size: 15px; font-weight: 500; border: 1px solid #c1d7b8; border-radius: 10px; background-color: #f7faf5; color: #2e2e2e;"
+          required
+        ></select>
+        <br />
+        <label for="City" style="font-size: 16px; font-weight: 600; color: #2c4b1c;"><b>City</b></label>
+        <select
+          id="state"
+          class="form-control"
+          name="city"
+          style="width: 100%; padding: 12px; font-size: 15px; font-weight: 500; border: 1px solid #c1d7b8; border-radius: 10px; background-color: #f7faf5; color: #2e2e2e;"
+          required
+        ></select>
+        <script language="javascript">
+          print_state("sts");
+        </script>
+      </div>
+
+      <!-- Submit button -->
+      <div class="d-flex justify-content-center" style="text-align: center;">
+        <button
+          type="submit"
+          class="btn btn-info"
+          style="background-color: #6ea45e; border: none; color: #fff; font-weight: 600; font-size: 18px; padding: 12px 25px; border-radius: 12px; cursor: pointer; transition: background-color 0.3s ease;"
+          onmouseover="this.style.backgroundColor='#598f4a';"
+          onmouseout="this.style.backgroundColor='#6ea45e';"
+        >
+          Predict
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+{% endblock %}

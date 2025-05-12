@@ -1,0 +1,27 @@
+{% extends 'layout.html' %} 
+{% block body %}
+
+<!-- Green background for result page -->
+<div style="background-color: #e2f4e2; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 40px 20px;">
+
+  <div 
+    style="
+      max-width: 700px;
+      width: 100%;
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #2e2e2e;
+      text-align: center;
+    "
+  >
+    <h1 style="font-size: 28px; font-weight: 700; color: #2c4b1c;">
+      You should grow <i style="color: #4c8c3f;">{{ prediction }}</i> in your farm
+    </h1>
+  </div>
+
+</div>
+
+{% endblock %}

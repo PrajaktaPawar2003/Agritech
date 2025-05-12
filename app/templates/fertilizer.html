@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<!-- Fertilizer Input Form with Green Theme -->
+<div style="background-color: #e2f4e2; min-height: 100vh; padding-top: 40px; padding-bottom: 40px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+  <h2 style="text-align: center; color: #2c4b1c; margin-bottom: 30px;">
+    <b>Get informed advice on fertilizer based on soil</b>
+  </h2>
+
+  <div style="
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      color: #2c4b1c;
+    ">
+
+    <form method="POST" action="{{ url_for('fert_recommend') }}">
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="Nitrogen" style="font-size: 16px;"><b>Nitrogen</b></label>
+        <input type="number" class="form-control" id="Nitrogen" name="nitrogen"
+          placeholder="Enter the value (example: 50)"
+          style="font-weight: bold; border-radius: 8px;" required />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="Phosphorous" style="font-size: 16px;"><b>Phosphorous</b></label>
+        <input type="number" class="form-control" id="Phosphorous" name="phosphorous"
+          placeholder="Enter the value (example: 50)"
+          style="font-weight: bold; border-radius: 8px;" required />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 20px;">
+        <label for="Pottasium" style="font-size: 16px;"><b>Potassium</b></label>
+        <input type="number" class="form-control" id="Pottasium" name="pottasium"
+          placeholder="Enter the value (example: 50)"
+          style="font-weight: bold; border-radius: 8px;" required />
+      </div>
+
+      <div class="form-group" style="margin-bottom: 25px;">
+        <label for="crop" style="font-size: 16px;"><b>Crop you want to grow</b></label>
+        <select name="cropname" class="form-control" id="crop" style="font-weight: bold; border-radius: 8px;" required>
+          <option selected>Select crop</option>
+          <option>rice</option>
+          <option>maize</option>
+          <option>chickpea</option>
+          <option>kidneybeans</option>
+          <option>pigeonpeas</option>
+          <option>mothbeans</option>
+          <option>mungbean</option>
+          <option>blackgram</option>
+          <option>lentil</option>
+          <option>pomegranate</option>
+          <option>banana</option>
+          <option>mango</option>
+          <option>grapes</option>
+          <option>watermelon</option>
+          <option>muskmelon</option>
+          <option>apple</option>
+          <option>orange</option>
+          <option>papaya</option>
+          <option>coconut</option>
+          <option>cotton</option>
+          <option>jute</option>
+          <option>coffee</option>
+        </select>
+      </div>
+
+      <div style="text-align: center;">
+        <button type="submit" class="btn"
+          style="background-color: #a8e6a3; color: black; font-weight: bold; font-size: 18px; padding: 10px 25px; border-radius: 12px; border: none; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+          Predict
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
